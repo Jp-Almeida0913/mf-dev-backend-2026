@@ -7,10 +7,12 @@ namespace mf_dev_backend_2026.Controllers
     public class VeiculosController : Controller
     {
         private readonly AppDbContext _context;
+
         public VeiculosController(AppDbContext context)
         {
             _context = context;
         }
+
 
         public async Task<IActionResult> Index()
         {   
@@ -19,11 +21,11 @@ namespace mf_dev_backend_2026.Controllers
             return View(dados);
         }
 
+
         public IActionResult Create()
         {
             return View();
         }
-
         [HttpPost]
         public async Task<IActionResult> Create(Veiculo veiculo)
         {
@@ -35,6 +37,7 @@ namespace mf_dev_backend_2026.Controllers
             }
             return View();
         }
+
 
         public async Task<IActionResult> Edit(int? id)
         {
@@ -52,7 +55,6 @@ namespace mf_dev_backend_2026.Controllers
 
             return View(dados);
         }
-
         [HttpPost]
         public async Task<IActionResult> Edit(int id, Veiculo veiculo)
         {
@@ -70,5 +72,23 @@ namespace mf_dev_backend_2026.Controllers
 
             return View();
         }
+
+
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var dados = await _context.Veiculos.FindAsync(id);
+
+            if (dados == null)
+            {
+                return NotFound();
+            }
+
+            return View(dados);
+        }   
     }
 }
