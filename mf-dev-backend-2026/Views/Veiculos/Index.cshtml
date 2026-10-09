@@ -1,0 +1,53 @@
+@model IEnumerable<mf_dev_backend_2026.Models.Veiculo>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Lista de Veículos</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Adicionar Novo Veículo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Placa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AnoFabricacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AnoModelo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Placa)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.AnoFabricacao)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.AnoModelo)
+            </td>
+            <td>
+                    <a class="btn btn-warning" asp-action="Editar" asp-route-id="@item.Id">Edit</a> |
+                    <a class="btn btn-primary" asp-action="Visualizar" asp-route-id="@item.Id">Details</a> |
+                    <a class="btn btn-danger" asp-action="Apagar" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
